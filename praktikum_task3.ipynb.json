@@ -1,0 +1,1818 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "pd.set_option('display.max_rows', 10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Индексация в Python"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Индексация - способ получить элемент контейнера по его порядковому номеру. В Python можно индексация работает для типов данных list, tuple и string.\n",
+    "\n",
+    "Сгенерируем list и посмотрим на примеры."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "my_list =  list(range(10))\n",
+    "my_list"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "В Python, как и в большинстве языков программирования, индексация начинается с нулевого элемента. Чтобы получить элемент по номеру, нужно задать этот номер целым числом в квадратных скобках рядом с контейнером. \n",
+    "\n",
+    "В Python порядковый индекс считать можно с начала и конца: первый элемент нулевой, последний - минус первый."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n",
+      "9\n",
+      "5\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(my_list[3]) # третий элемент списка\n",
+    "print(my_list[-1]) # последний элеменет списка\n",
+    "print(my_list[-5]) # пятый с конца элемент списка"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Попытка обратиться к несуществущему номеру элемента вызовет ошибку индекса IndexError: list index out of range."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "9\n"
+     ]
+    },
+    {
+     "ename": "IndexError",
+     "evalue": "list index out of range",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mIndexError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-12-9e844d0f9f41>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmy_list\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m9\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;31m#последний индкекс списка\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmy_list\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m10\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;31m#несуществующий индекс, ошибка\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mIndexError\u001b[0m: list index out of range"
+     ]
+    }
+   ],
+   "source": [
+    "print(my_list[9]) # последний индекс списка\n",
+    "print(my_list[10]) # несуществующий индекс, ошибка"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0\n"
+     ]
+    },
+    {
+     "ename": "IndexError",
+     "evalue": "list index out of range",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mIndexError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-13-a560011b6033>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmy_list\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m-\u001b[0m\u001b[0;36m10\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;31m# первый элемент списка\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 2\u001b[0;31m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmy_list\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m-\u001b[0m\u001b[0;36m11\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;31m# несуществующий индекс, ошибка\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mIndexError\u001b[0m: list index out of range"
+     ]
+    }
+   ],
+   "source": [
+    "print(my_list[-10]) # первый элемент списка\n",
+    "print(my_list[-11]) # несуществующий индекс, ошибка"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Слайсинг с помощью индексов"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Слайсинг - способ выбирать срез элементов по индексу. \n",
+    "\n",
+    "Базовый способ - задать диапазон по номеру начального и конечного элемента. Левый элемент включается, правый нет."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 2]\n",
+      "[2, 3, 4, 5, 6, 7]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(my_list[1:3])    # начало, конец\n",
+    "print(my_list[2:-2])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 3, 5, 7, 9]\n",
+      "[9, 7, 5, 3]\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(my_list[1:12:2])   # начало, конец, шаг\n",
+    "print(my_list[-1:1:-2])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "При слайсинге выход индекса за размеры контейнера не вызывает ошибку. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "индексация с tuple dict и set"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Groupby Pandas"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "GroupBy - функциональность pandas, которую следует использовать, когда мы хотим сгруппировать таблицу по значениям столбца и посчитать статистику для этих значений.\n",
+    "\n",
+    "Аналог SQL-ного GROUP BY.\n",
+    "\n",
+    "Разберем пример на данных пассажиров титаника.\n",
+    "\n",
+    "- разделить,\n",
+    "- применить преобразование,\n",
+    "- совместить\n",
+    "\n",
+    "данные по какому-либо признаку\n",
+    "Когда следует использовать groupby  https://www.youtube.com/watch?v=Wb2Tp35dZ-I\n",
+    "\n",
+    "https://app.moqups.com/UHkgeJR6h4/edit/page/ad64222d5\n",
+    "\n",
+    "https://www.youtube.com/watch?v=qy0fDqoMJx8^n, https://nbviewer.jupyter.org/github/justmarkham/pandas-videos/blob/master/pandas.ipynb#14.-When-should-I-use-a-%22groupby%22-in-pandas%3F-%28video%29\n",
+    "http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>survived</th>\n",
+       "      <th>pclass</th>\n",
+       "      <th>sex</th>\n",
+       "      <th>age</th>\n",
+       "      <th>sibsp</th>\n",
+       "      <th>parch</th>\n",
+       "      <th>fare</th>\n",
+       "      <th>embarked</th>\n",
+       "      <th>class</th>\n",
+       "      <th>who</th>\n",
+       "      <th>adult_male</th>\n",
+       "      <th>deck</th>\n",
+       "      <th>embark_town</th>\n",
+       "      <th>alive</th>\n",
+       "      <th>alone</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>male</td>\n",
+       "      <td>22.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>7.2500</td>\n",
+       "      <td>S</td>\n",
+       "      <td>Third</td>\n",
+       "      <td>man</td>\n",
+       "      <td>True</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Southampton</td>\n",
+       "      <td>no</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>female</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>71.2833</td>\n",
+       "      <td>C</td>\n",
+       "      <td>First</td>\n",
+       "      <td>woman</td>\n",
+       "      <td>False</td>\n",
+       "      <td>C</td>\n",
+       "      <td>Cherbourg</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>female</td>\n",
+       "      <td>26.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>7.9250</td>\n",
+       "      <td>S</td>\n",
+       "      <td>Third</td>\n",
+       "      <td>woman</td>\n",
+       "      <td>False</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Southampton</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>True</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>female</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>53.1000</td>\n",
+       "      <td>S</td>\n",
+       "      <td>First</td>\n",
+       "      <td>woman</td>\n",
+       "      <td>False</td>\n",
+       "      <td>C</td>\n",
+       "      <td>Southampton</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>False</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>male</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>8.0500</td>\n",
+       "      <td>S</td>\n",
+       "      <td>Third</td>\n",
+       "      <td>man</td>\n",
+       "      <td>True</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Southampton</td>\n",
+       "      <td>no</td>\n",
+       "      <td>True</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   survived  pclass     sex   age  sibsp  parch     fare embarked  class  \\\n",
+       "0         0       3    male  22.0      1      0   7.2500        S  Third   \n",
+       "1         1       1  female  38.0      1      0  71.2833        C  First   \n",
+       "2         1       3  female  26.0      0      0   7.9250        S  Third   \n",
+       "3         1       1  female  35.0      1      0  53.1000        S  First   \n",
+       "4         0       3    male  35.0      0      0   8.0500        S  Third   \n",
+       "\n",
+       "     who  adult_male deck  embark_town alive  alone  \n",
+       "0    man        True  NaN  Southampton    no  False  \n",
+       "1  woman       False    C    Cherbourg   yes  False  \n",
+       "2  woman       False  NaN  Southampton   yes   True  \n",
+       "3  woman       False    C  Southampton   yes  False  \n",
+       "4    man        True  NaN  Southampton    no   True  "
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "titanic = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv')\n",
+    "titanic.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Для нашего примера возьмем колонки о выживаемости, возрасте и классе пассажира."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>survived</th>\n",
+       "      <th>age</th>\n",
+       "      <th>class</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>22.0</td>\n",
+       "      <td>Third</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>26.0</td>\n",
+       "      <td>Third</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>0</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>Third</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>886</th>\n",
+       "      <td>0</td>\n",
+       "      <td>27.0</td>\n",
+       "      <td>Second</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>887</th>\n",
+       "      <td>1</td>\n",
+       "      <td>19.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>888</th>\n",
+       "      <td>0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Third</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>889</th>\n",
+       "      <td>1</td>\n",
+       "      <td>26.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>890</th>\n",
+       "      <td>0</td>\n",
+       "      <td>32.0</td>\n",
+       "      <td>Third</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>891 rows × 3 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     survived   age   class\n",
+       "0           0  22.0   Third\n",
+       "1           1  38.0   First\n",
+       "2           1  26.0   Third\n",
+       "3           1  35.0   First\n",
+       "4           0  35.0   Third\n",
+       "..        ...   ...     ...\n",
+       "886         0  27.0  Second\n",
+       "887         1  19.0   First\n",
+       "888         0   NaN   Third\n",
+       "889         1  26.0   First\n",
+       "890         0  32.0   Third\n",
+       "\n",
+       "[891 rows x 3 columns]"
+      ]
+     },
+     "execution_count": 57,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "titanic = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv')[\n",
+    "    ['survived', 'age', 'class']]\n",
+    "titanic"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Теперь применим метод groupby к нашему DataFrame."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<pandas.core.groupby.groupby.DataFrameGroupBy object at 0x7f4da13bf4a8>"
+      ]
+     },
+     "execution_count": 38,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "grouped_by_class = titanic.groupby('class') #столбец, по которому группируем\n",
+    "grouped_by_class"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "groupby() вернул особый объект специального типа DataFrameGroupBy. По этому объекту можно проитерироваться и посмотреть, что внутри. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First\n",
+      "     survived   age  class\n",
+      "1           1  38.0  First\n",
+      "3           1  35.0  First\n",
+      "6           0  54.0  First\n",
+      "11          1  58.0  First\n",
+      "23          1  28.0  First\n",
+      "..        ...   ...    ...\n",
+      "871         1  47.0  First\n",
+      "872         0  33.0  First\n",
+      "879         1  56.0  First\n",
+      "887         1  19.0  First\n",
+      "889         1  26.0  First\n",
+      "\n",
+      "[216 rows x 3 columns]\n",
+      "\n",
+      "\n",
+      "Second\n",
+      "     survived   age   class\n",
+      "9           1  14.0  Second\n",
+      "15          1  55.0  Second\n",
+      "17          1   NaN  Second\n",
+      "20          0  35.0  Second\n",
+      "21          1  34.0  Second\n",
+      "..        ...   ...     ...\n",
+      "866         1  27.0  Second\n",
+      "874         1  28.0  Second\n",
+      "880         1  25.0  Second\n",
+      "883         0  28.0  Second\n",
+      "886         0  27.0  Second\n",
+      "\n",
+      "[184 rows x 3 columns]\n",
+      "\n",
+      "\n",
+      "Third\n",
+      "     survived   age  class\n",
+      "0           0  22.0  Third\n",
+      "2           1  26.0  Third\n",
+      "4           0  35.0  Third\n",
+      "5           0   NaN  Third\n",
+      "7           0   2.0  Third\n",
+      "..        ...   ...    ...\n",
+      "882         0  22.0  Third\n",
+      "884         0  25.0  Third\n",
+      "885         0  39.0  Third\n",
+      "888         0   NaN  Third\n",
+      "890         0  32.0  Third\n",
+      "\n",
+      "[491 rows x 3 columns]\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "# смотрим на объект\n",
+    "for pass_class, df_pass in grouped_by_class:\n",
+    "    print(pass_class)\n",
+    "    print(df_pass)\n",
+    "    print('\\n')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Внутри - значения столбца, по которому мы группируем, лежат как ключи, а по ключу - лежат DataFrame со соответствующими этому значению столбца строками. \n",
+    "\n",
+    "Если мы проитерируемся таким же образом и выведем тип данных мы в этом убедимся."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'str'>\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "\n",
+      "\n",
+      "<class 'str'>\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "\n",
+      "\n",
+      "<class 'str'>\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "for pass_class, df_pass in grouped_by_class:\n",
+    "    print(type(pass_class))\n",
+    "    print(type(df_pass))\n",
+    "    print('\\n')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Иллюстрация объекта DataFrameGroupBy\n",
+    "![applying group by](imgs/split.png)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "По ключу - значению столбца - можем выбрать DataFrame"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>survived</th>\n",
+       "      <th>age</th>\n",
+       "      <th>class</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>0</td>\n",
+       "      <td>54.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>11</th>\n",
+       "      <td>1</td>\n",
+       "      <td>58.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>23</th>\n",
+       "      <td>1</td>\n",
+       "      <td>28.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>871</th>\n",
+       "      <td>1</td>\n",
+       "      <td>47.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>872</th>\n",
+       "      <td>0</td>\n",
+       "      <td>33.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>879</th>\n",
+       "      <td>1</td>\n",
+       "      <td>56.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>887</th>\n",
+       "      <td>1</td>\n",
+       "      <td>19.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>889</th>\n",
+       "      <td>1</td>\n",
+       "      <td>26.0</td>\n",
+       "      <td>First</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>216 rows × 3 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     survived   age  class\n",
+       "1           1  38.0  First\n",
+       "3           1  35.0  First\n",
+       "6           0  54.0  First\n",
+       "11          1  58.0  First\n",
+       "23          1  28.0  First\n",
+       "..        ...   ...    ...\n",
+       "871         1  47.0  First\n",
+       "872         0  33.0  First\n",
+       "879         1  56.0  First\n",
+       "887         1  19.0  First\n",
+       "889         1  26.0  First\n",
+       "\n",
+       "[216 rows x 3 columns]"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "grouped_by_class.get_group('First')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Теперь для каждого класса пассажиров мы можем посчитать среднюю выживаемость и возраст, просто применив "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>survived</th>\n",
+       "      <th>age</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>class</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>First</th>\n",
+       "      <td>0.629630</td>\n",
+       "      <td>38.233441</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Second</th>\n",
+       "      <td>0.472826</td>\n",
+       "      <td>29.877630</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Third</th>\n",
+       "      <td>0.242363</td>\n",
+       "      <td>25.140620</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "        survived        age\n",
+       "class                      \n",
+       "First   0.629630  38.233441\n",
+       "Second  0.472826  29.877630\n",
+       "Third   0.242363  25.140620"
+      ]
+     },
+     "execution_count": 52,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "grouped_by_class.mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Иллюстрация аггрегации\n",
+    "![applying group by](imgs/apply.png)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "В [документации pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html)  процесс Group By описан как комбинация split-apply-combine, то есть разделить - применить [функцию] - совместить. \n",
+    "\n",
+    "Проиллюстрируем это на нашем примере:\n",
+    "![applying group by](imgs/s_a_c.png)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "С помощью matplotlib можно визуализировать наши результаты"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x7f4d9c2805f8>"
+      ]
+     },
+     "execution_count": 69,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "%matplotlib inline\n",
+    "grouped_by_class.mean().age.plot(kind='bar', title = 'Средний возраст среди пассажиров разных классов')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x7f4d9c981ef0>"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAXcAAAEkCAYAAADU2nGnAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDMuMC4wLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvqOYd8AAAEiBJREFUeJzt3X+QXWddx/H3h4QgAoLQVbDNNKEN4wRafi2FqY4wBWZSGROH8qMdEFCkomT4JUj5YYX6E+qgIxNniIJApZTSCixDMAgFxAolWyht01qModh0+LEtpVrAlsDXP+4JXJZN9mxys3f32fdrJpP7POfJvd+dTT559jnnOSdVhSSpLXcbdwGSpNEz3CWpQYa7JDXIcJekBhnuktQgw12SGmS4S1KDDHdJapDhLkkNWj2uDz7mmGNq3bp14/p4SVqWrrzyyluqamK+cWML93Xr1jE9PT2uj5ekZSnJV/qMc1lGkhpkuEtSgwx3SWqQ4S5JDTLcJalBhrskNchwl6QGGe6S1KCxbWJabOvO+fC4SziqbvyLp4y7BElLiDN3SWqQ4S5JDTLcJalBhrskNchwl6QGGe6S1KBe4Z5kU5IbkuxJcs5BxjwjyXVJdie5cLRlSpIWYt7r3JOsArYBTwb2AbuSTFXVdUNjNgCvBn6pqm5L8nNHq2BJ0vz6zNxPAfZU1d6qugu4CNgya8wLgG1VdRtAVX1jtGVKkhaiT7gfC9w01N7X9Q17CPCQJJcn+WySTXO9UZKzk0wnmZ6ZmTm8iiVJ8xrVCdXVwAbgCcBZwN8lud/sQVW1vaomq2pyYmLe57tKkg5Tn3C/GVg71D6u6xu2D5iqqu9V1ZeBLzEIe0nSGPQJ913AhiTrk6wBzgSmZo35AINZO0mOYbBMs3eEdUqSFmDecK+q/cBWYCdwPXBxVe1Ocl6Szd2wncCtSa4DPgG8sqpuPVpFS5IOrdctf6tqB7BjVt+5Q68LeHn3S5I0Zu5QlaQGGe6S1CDDXZIaZLhLUoMMd0lqkOEuSQ0y3CWpQYa7JDXIcJekBhnuktQgw12SGmS4S1KDDHdJapDhLkkNMtwlqUGGuyQ1yHCXpAYZ7pLUIMNdkhpkuEtSgwx3SWqQ4S5JDTLcJalBhrskNahXuCfZlOSGJHuSnDPH8eclmUlyVffrt0dfqiSpr9XzDUiyCtgGPBnYB+xKMlVV180a+t6q2noUapQkLVCfmfspwJ6q2ltVdwEXAVuOblmSpCPRJ9yPBW4aau/r+mY7I8nVSS5JsnauN0pydpLpJNMzMzOHUa4kqY9RnVD9ELCuqk4G/gV451yDqmp7VU1W1eTExMSIPlqSNFufcL8ZGJ6JH9f1/VBV3VpVd3bNvwcePZryJEmHo0+47wI2JFmfZA1wJjA1PCDJg4aam4HrR1eiJGmh5r1apqr2J9kK7ARWAW+vqt1JzgOmq2oKeHGSzcB+4JvA845izZKkecwb7gBVtQPYMavv3KHXrwZePdrSJEmHyx2qktQgw12SGmS4S1KDeq25S2P3+vuOu4Kj5/W3j7sCNciZuyQ1yHCXpAYZ7pLUIMNdkhpkuEtSgwx3SWqQ4S5JDTLcJalBhrskNchwl6QGGe6S1CDDXZIaZLhLUoMMd0lqkOEuSQ0y3CWpQYa7JDXIcJekBhnuktQgw12SGtQr3JNsSnJDkj1JzjnEuDOSVJLJ0ZUoSVqoecM9ySpgG3A6sBE4K8nGOcbdB3gJcMWoi5QkLUyfmfspwJ6q2ltVdwEXAVvmGPfHwBuB/xthfZKkw9An3I8Fbhpq7+v6fijJo4C1VfXhQ71RkrOTTCeZnpmZWXCxkqR+jviEapK7AW8Gfn++sVW1vaomq2pyYmLiSD9aknQQfcL9ZmDtUPu4ru+A+wAPAz6Z5EbgccCUJ1UlaXz6hPsuYEOS9UnWAGcCUwcOVtXtVXVMVa2rqnXAZ4HNVTV9VCqWJM1r3nCvqv3AVmAncD1wcVXtTnJeks1Hu0BJ0sKt7jOoqnYAO2b1nXuQsU848rIkSUfCHaqS1CDDXZIaZLhLUoMMd0lqkOEuSQ0y3CWpQYa7JDXIcJekBhnuktQgw12SGmS4S1KDDHdJapDhLkkNMtwlqUGGuyQ1yHCXpAYZ7pLUIMNdkhpkuEtSgwx3SWqQ4S5JDTLcJalBhrskNahXuCfZlOSGJHuSnDPH8RcmuSbJVUn+LcnG0ZcqSepr3nBPsgrYBpwObATOmiO8L6yqk6rqEcCbgDePvFJJUm99Zu6nAHuqam9V3QVcBGwZHlBV/zPUvBdQoytRkrRQq3uMORa4aai9D3js7EFJXgS8HFgDnDaS6iRJh2VkJ1SraltVnQC8CnjdXGOSnJ1kOsn0zMzMqD5akjRLn3C/GVg71D6u6zuYi4Bfn+tAVW2vqsmqmpyYmOhfpSRpQfqE+y5gQ5L1SdYAZwJTwwOSbBhqPgX4z9GVKElaqHnX3Ktqf5KtwE5gFfD2qtqd5DxguqqmgK1JngR8D7gNeO7RLFqSdGh9TqhSVTuAHbP6zh16/ZIR1yVJOgLuUJWkBhnuktQgw12SGmS4S1KDDHdJapDhLkkNMtwlqUGGuyQ1yHCXpAYZ7pLUIMNdkhpkuEtSgwx3SWpQr7tCStLhOumdJ427hKPqmudeM+4S5uTMXZIaZLhLUoMMd0lqkOEuSQ0y3CWpQYa7JDXIcJekBhnuktQgw12SGmS4S1KDeoV7kk1JbkiyJ8k5cxx/eZLrklyd5ONJjh99qZKkvuYN9ySrgG3A6cBG4KwkG2cN+wIwWVUnA5cAbxp1oZKk/vrM3E8B9lTV3qq6C7gI2DI8oKo+UVXf6ZqfBY4bbZmSpIXoE+7HAjcNtfd1fQfzfOAjcx1IcnaS6STTMzMz/auUJC3ISE+oJnk2MAmcP9fxqtpeVZNVNTkxMTHKj5YkDelzP/ebgbVD7eO6vh+T5EnAa4HHV9WdoylPknQ4+szcdwEbkqxPsgY4E5gaHpDkkcBbgc1V9Y3RlylJWoh5w72q9gNbgZ3A9cDFVbU7yXlJNnfDzgfuDbwvyVVJpg7ydpKkRdDrMXtVtQPYMavv3KHXTxpxXZKkI+AOVUlqkOEuSQ0y3CWpQYa7JDXIcJekBhnuktQgw12SGmS4S1KDDHdJapDhLkkNMtwlqUGGuyQ1yHCXpAYZ7pLUIMNdkhpkuEtSgwx3SWqQ4S5JDTLcJalBhrskNchwl6QGGe6S1CDDXZIaZLhLUoN6hXuSTUluSLInyTlzHP+VJJ9Psj/J00ZfpiRpIeYN9ySrgG3A6cBG4KwkG2cN+2/gecCFoy5QkrRwq3uMOQXYU1V7AZJcBGwBrjswoKpu7I794CjUKElaoD7LMscCNw2193V9C5bk7CTTSaZnZmYO5y0kST0s6gnVqtpeVZNVNTkxMbGYHy1JK0qfcL8ZWDvUPq7rkyQtUX3CfRewIcn6JGuAM4Gpo1uWJOlIzBvuVbUf2ArsBK4HLq6q3UnOS7IZIMljkuwDng68Ncnuo1m0JOnQ+lwtQ1XtAHbM6jt36PUuBss1kqQlwB2qktQgw12SGmS4S1KDDHdJapDhLkkNMtwlqUGGuyQ1yHCXpAYZ7pLUIMNdkhpkuEtSgwx3SWqQ4S5JDTLcJalBhrskNchwl6QGGe6S1CDDXZIaZLhLUoMMd0lqkOEuSQ0y3CWpQYa7JDXIcJekBvUK9ySbktyQZE+Sc+Y4fo8k7+2OX5Fk3agLlST1N2+4J1kFbANOBzYCZyXZOGvY84HbqupE4K+AN466UElSf31m7qcAe6pqb1XdBVwEbJk1Zgvwzu71JcATk2R0ZUqSFmJ1jzHHAjcNtfcBjz3YmKran+R24AHALcODkpwNnN0170hyw+EUvUwcw6yv/2iKPyuN0qJ+73iD86ARW9x/e89b9O/f8X0G9Qn3kamq7cD2xfzMcUkyXVWT465DC+f3bnnz+zfQZ1nmZmDtUPu4rm/OMUlWA/cFbh1FgZKkhesT7ruADUnWJ1kDnAlMzRozBTy3e/004LKqqtGVKUlaiHmXZbo19K3ATmAV8Paq2p3kPGC6qqaAtwEXJNkDfJPBfwAr3YpYfmqU37vlze8fECfYktQed6hKUoMMd0lqkOEuSQ0y3CWpQYu6ial1Sd5YVa+ar0/SkUtyDXDQK0Kq6uRFLGfJ8WqZEUry+ap61Ky+q1f6X7KlLMmHOHRAbF7EcrQASQ5sw39R9/sF3e/PAqiqn7iD7UpiuI9Akt8Ffg94MPBfQ4fuA1xeVc8eS2GaV5LHdy+fCjwQ+MeufRbw9ap62VgKU29JvlBVj5zV9xMTrZXGcB+BJPcFfhb4c2B4tvC/VfXN8VSlhZjrfiTeo2R5SHIV8KKqurxrnwr8bVU9YryVjZdr7iNQVbcDtyd5HfC1qrozyROAk5O8q6q+Nd4K1cO9kjy4qvYCJFkP3GvMNamf3wL+oZtkAXyr61vRDPfRuhSYTHIigy3QHwQuBH51rFWpj5cBn0yyFwiD26r+znhL0nyS3A04saoefiDcu8nWiueyzAgdWOdL8gfAd6vqLXOtB2ppSnIP4Be75n9U1Z3jrEf9uHw2N2fuo/W9JGcBzwF+reu7+xjr0cI8GljH4N/Fw5NQVe8ab0nq4WNJXgG8F/j2gc6Vfr7LmfsIdc+WfSHwmap6T7du+4yq8jlJS1ySC4ATgKuA73fdVVUvHl9V6iPJl+forqp68KIXs4QY7iPSPUj8XVX1rHHXooVLcj2w0ecQqBUuy4xIVX0/yfFJ1nQPEtfyci2D69y/Ou5C1E+S06rqsiRPnet4Vf3TYte0lBjuo7UXuDzJFD++9vfm8ZWkno4BrkvyOeCHJ1LdobqkPR64jB+d3xpWwIoOd5dlRijJH83VX1VvWOxatDBDO1V/TFV9arFrkUbBcJc6SX4eeEzX/FxVfWOc9aif7hLWM/jRlU4AVNV546ppKXBZZgSS/HVVvfRgN6HyR/ulL8kzgPOBTzLYxPSWJK+sqkvGWpj6+CBwO3AlQ0tqK50z9xFI8uiqutIf7ZevJF8Ennxgtp5kAvhYVT18vJVpPkmuraqHjbuOpcaZ+2jMgCG+zN1t1jLMrfgwm+Xi35OcVFXXjLuQpcRwH40PAI8CSHJpVZ0x5nq0cP+cZCfwnq79TOAjY6xH80hyLfADBjn2m919ge5ksKxWK/05Cob7aGTo9YreFbdcVdUru+ulf7nr2l5V7x9nTZrXscCKvq3voRjuo1EHea1lortVxI4DG1+S3DPJuqq6cbyV6RC+XFVfGXcRS5UnVEcgyfcZbFoKcE/gOwcOMfjx8GfGVZv6STINnHpgd3GSNQyeovWYQ/9JjUuSfcBBNwiu9M2DztxHoKpWjbsGHbHVw7eNqKq7uoDX0rUKuDc/viyqjuEuDcwk2VxVUwBJtgC3jLkmHdpXV/pGpUNxWUYCkpwAvJvBSboC9gHPqao9Yy1MB+WDcA7NcJeGJLk3QFXdMe5adGhJ7r/SH8hxKG7SkBjcVybJ24D3VdUdSTYmef6469LBGeyHZrhLA+8AdgK/0LW/BLx0bNVIR8hwlwaOqaqLGex4pKr286PH7UnLjuEuDXw7yQPoNqEleRyDOw1Ky5KXQkoDLwemgBOSXA5MAE8bb0nS4XPmrhUtyWOSPLCqPs/gsW2vYXDzqY8yuBxSWpYMd610bwUO7Ew9FXgtsA24Ddg+rqKkI+WyjFa6VUOX1D2Twd0gLwUuTXLVGOuSjogzd610q5IcmOQ8Ebhs6JiTHy1b/uXVSvce4FNJbgG+C3waIMmJeLWMljFvP6AVr7vs8UHAR6vq213fQ4B7dydapWXHcJekBrnmLkkNMtwlqUGGu1akJK9P8opx1yEdLYa7JDXIcNeKkOQ5Sa5O8sUkF8w69oIku7pjlyb56a7/6Umu7fr/tet7aJLPJbmqe78N4/h6pPl4tYyal+ShwPuBU6vqliT3B14M3FFVf5nkAVV1azf2T4CvV9VbklwDbKqqm5Pcr6q+leQtwGer6t3dA7RXVdV3x/W1SQfjzF0rwWkMnrB0C8z5BJ+HJfl0F+bPAh7a9V8OvCPJC4BVXd9ngNckeRVwvMGupcpwlwZPYdpaVScBbwB+CqCqXgi8DlgLXNnN8C8ENjPYzbojyWnjKVk6NMNdK8FlwNO7h3HQLcsMuw/w1SR3ZzBzpxt3QlVdUVXnAjPA2iQPBvZW1d8AHwROXpSvQFog7y2j5lXV7iR/yuAeMt8HvgDcODTkD4ErGAT4FQzCHuD87oRpgI8DXwReBfxGku8BXwP+bFG+CGmBPKEqSQ1yWUaSGmS4S1KDDHdJapDhLkkNMtwlqUGGuyQ1yHCXpAb9P6lG7d8qWFQQAAAAAElFTkSuQmCC\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "grouped_by_class.mean().survived.plot(kind='bar', title)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Загрузим дополнительно данные о типе пассажира (мужчина, женцина или ребенок), сгруппируем по классу и типу и визуализируем выживаемость."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 72,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x7f4d9c194c18>"
+      ]
+     },
+     "execution_count": 72,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "titanic = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/titanic.csv')[\n",
+    "    ['survived', 'age','class', 'who']]\n",
+    "grouped_by_class_and_sex = titanic.groupby(['class', 'who'])\n",
+    "grouped_by_class_and_sex.mean().survived.plot(kind='bar', title=\"\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Можно указывать сразу несколько аггрегаций:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 79,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>min</th>\n",
+       "      <th>mean</th>\n",
+       "      <th>max</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>class</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>First</th>\n",
+       "      <td>0.92</td>\n",
+       "      <td>38.233441</td>\n",
+       "      <td>80.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Second</th>\n",
+       "      <td>0.67</td>\n",
+       "      <td>29.877630</td>\n",
+       "      <td>70.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Third</th>\n",
+       "      <td>0.42</td>\n",
+       "      <td>25.140620</td>\n",
+       "      <td>74.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         min       mean   max\n",
+       "class                        \n",
+       "First   0.92  38.233441  80.0\n",
+       "Second  0.67  29.877630  70.0\n",
+       "Third   0.42  25.140620  74.0"
+      ]
+     },
+     "execution_count": 79,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# в данном примере перед аггрегацией мы дополнительно выбрали столбец age\n",
+    "grouped_by_class.age.agg(['min','mean', 'max']) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 80,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr th {\n",
+       "        text-align: left;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead tr:last-of-type th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th>survived</th>\n",
+       "      <th colspan=\"2\" halign=\"left\">age</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th></th>\n",
+       "      <th>mean</th>\n",
+       "      <th>min</th>\n",
+       "      <th>max</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>class</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>First</th>\n",
+       "      <td>0.629630</td>\n",
+       "      <td>0.92</td>\n",
+       "      <td>80.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Second</th>\n",
+       "      <td>0.472826</td>\n",
+       "      <td>0.67</td>\n",
+       "      <td>70.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Third</th>\n",
+       "      <td>0.242363</td>\n",
+       "      <td>0.42</td>\n",
+       "      <td>74.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "        survived   age      \n",
+       "            mean   min   max\n",
+       "class                       \n",
+       "First   0.629630  0.92  80.0\n",
+       "Second  0.472826  0.67  70.0\n",
+       "Third   0.242363  0.42  74.0"
+      ]
+     },
+     "execution_count": 80,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "grouped_by_class.agg({'age': ['min', 'max'], 'survived': 'mean'})"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "https://pandas.pydata.org/pandas-docs/version/0.23/generated/pandas.core.groupby.DataFrameGroupBy.agg.html"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    " ## Удаление строк\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "Индекс = row labels, labelled index\n",
+    "https://www.youtube.com/watch?v=OYZNk7Z9s6I\n",
+    "    - identification\n",
+    "    - selection\n",
+    "https://stackoverflow.com/questions/27238066/what-is-the-point-of-indexing-in-pandas\n",
+    "\n",
+    "loc & iloc\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "table = pd.DataFrame(\n",
+    "    data=[['BTC', 10000],['LTC', 200],['XRP', 1], ['BTC', 9000]],\n",
+    "    columns=['symbol', 'price'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>symbol</th>\n",
+       "      <th>price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>BTC</td>\n",
+       "      <td>10000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>LTC</td>\n",
+       "      <td>200</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>XRP</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>BTC</td>\n",
+       "      <td>9000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  symbol  price\n",
+       "0    BTC  10000\n",
+       "1    LTC    200\n",
+       "2    XRP      1\n",
+       "3    BTC   9000"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "table"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "symbol    LTC\n",
+       "price     200\n",
+       "Name: 1, dtype: object"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "table.loc[1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "table = table.drop([1])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "symbol    XRP\n",
+       "price       1\n",
+       "Name: 2, dtype: object"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "table.loc[2]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "table.reset_index(drop=True, inplace = True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Int64Index - это словарь"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## DataFrame and DataSeries"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "table = pd.DataFrame(\n",
+    "    data=[['BTC', 10000],['LTC', 200],['XRP', 1], ['BTC', 9000]],\n",
+    "    columns=['symbol', 'price'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "## Домашка"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>symbol</th>\n",
+       "      <th>price</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>BTC</td>\n",
+       "      <td>10000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>LTC</td>\n",
+       "      <td>200</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>XRP</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>BTC</td>\n",
+       "      <td>9000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  symbol  price\n",
+       "0    BTC  10000\n",
+       "1    LTC    200\n",
+       "2    XRP      1\n",
+       "3    BTC   9000"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "table"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "symbol\n",
+      "price\n"
+     ]
+    }
+   ],
+   "source": [
+    "for elem in table:\n",
+    "    print(elem)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "4"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "len(table)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Data Series and Data Frame"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "2  базовых типа объекта в Pandas\n",
+    "\n",
+    "DataFrame - таблица или двумерный массив, состоит из строк и столбцов\n",
+    "DataSeries\n",
+    "Каждая из \n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 82,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>total_bill</th>\n",
+       "      <th>tip</th>\n",
+       "      <th>sex</th>\n",
+       "      <th>smoker</th>\n",
+       "      <th>day</th>\n",
+       "      <th>time</th>\n",
+       "      <th>size</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>16.99</td>\n",
+       "      <td>1.01</td>\n",
+       "      <td>Female</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>10.34</td>\n",
+       "      <td>1.66</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>21.01</td>\n",
+       "      <td>3.50</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>23.68</td>\n",
+       "      <td>3.31</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>24.59</td>\n",
+       "      <td>3.61</td>\n",
+       "      <td>Female</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>25.29</td>\n",
+       "      <td>4.71</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>8.77</td>\n",
+       "      <td>2.00</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>26.88</td>\n",
+       "      <td>3.12</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>15.04</td>\n",
+       "      <td>1.96</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>14.78</td>\n",
+       "      <td>3.23</td>\n",
+       "      <td>Male</td>\n",
+       "      <td>No</td>\n",
+       "      <td>Sun</td>\n",
+       "      <td>Dinner</td>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   total_bill   tip     sex smoker  day    time  size\n",
+       "0       16.99  1.01  Female     No  Sun  Dinner     2\n",
+       "1       10.34  1.66    Male     No  Sun  Dinner     3\n",
+       "2       21.01  3.50    Male     No  Sun  Dinner     3\n",
+       "3       23.68  3.31    Male     No  Sun  Dinner     2\n",
+       "4       24.59  3.61  Female     No  Sun  Dinner     4\n",
+       "5       25.29  4.71    Male     No  Sun  Dinner     4\n",
+       "6        8.77  2.00    Male     No  Sun  Dinner     2\n",
+       "7       26.88  3.12    Male     No  Sun  Dinner     4\n",
+       "8       15.04  1.96    Male     No  Sun  Dinner     2\n",
+       "9       14.78  3.23    Male     No  Sun  Dinner     2"
+      ]
+     },
+     "execution_count": 82,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "tips = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv').head(10)\n",
+    "tips_small = tips\n",
+    "tips_small"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 83,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.series.Series"
+      ]
+     },
+     "execution_count": 83,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(tips_small['total_bill'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 89,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "AttributeError",
+     "evalue": "'Series' object has no attribute 'idx'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-89-d866f6055b2c>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mtips_small\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'total_bill'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0midx\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;32m/usr/local/lib/python3.5/dist-packages/pandas/core/generic.py\u001b[0m in \u001b[0;36m__getattr__\u001b[0;34m(self, name)\u001b[0m\n\u001b[1;32m   4374\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_info_axis\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_can_hold_identifiers_and_holds_name\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mname\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   4375\u001b[0m                 \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mname\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 4376\u001b[0;31m             \u001b[0;32mreturn\u001b[0m \u001b[0mobject\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__getattribute__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mname\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   4377\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   4378\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0m__setattr__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mname\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mvalue\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mAttributeError\u001b[0m: 'Series' object has no attribute 'idx'"
+     ]
+    }
+   ],
+   "source": [
+    "tips_small['total_bill'].idx\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.5.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
